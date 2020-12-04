@@ -34,7 +34,7 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 1.0.1
 
 
 -----------------------------------------------------------------------------------------------------------
