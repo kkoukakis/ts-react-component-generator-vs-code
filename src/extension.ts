@@ -1,34 +1,48 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import * as path from 'path';
 import * as fs from 'fs';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
 	let disposable = vscode.commands.registerCommand('ts-react-component-generator.generate-ts-component', (e : any) => {
-		
+		var error : boolean = false;
 		let rootPath = e.fsPath;
-		vscode.window.showInputBox().then(function(componentName) {
-			fs.mkdirSync(rootPath + '/' + componentName);
+		vscode.window.showInputBox().then(function(componentName1) {
+
+			function replaceAll(string : string, search : string, replace :string) : string {
+				return string.split(search).join(replace);
+			}
+
+			var componentName : string = "";
+			if(componentName1){
+				componentName = replaceAll(componentName1," ",'');}
+			else{ 
+				vscode.window.showInformationMessage("[ " +componentName + " ]"+' is a wrong Component Name');
+				return;
+			}
+
+			//Check if folder already exists
+			if (fs.existsSync(rootPath + '/' + componentName)) {				 
+				vscode.window.showInformationMessage("[ " +componentName + " ]"+' folder already exists!');
+				return;
+			}else{	
+				//Perfect! Lets create our folder
+				fs.mkdirSync(rootPath + '/' + componentName);
+			}
 			
 			var component_tsx : string =  `import React, { Component } from 'react'; 
-			import './$Component$.css;
+			import './-component-.css;
 
-			export interface I$Component$Props {
+			export interface I-component-Props {
 				//Here we pass the Props Interface
 				 
 			}
 			
-			export interface I$Component$State {
+			export interface I-component-State {
 				//here we pass the State Interface
 			 
 			}
 			
 			//class ComponentName Component<PropsInterface, StateInterface>
-			class $Component$ extends Component<I$Component$Props, I$Component$State> {
+			class -component- extends Component<I-component-Props, I-component-State> {
 				
 				//Component State
 				state = {
@@ -59,28 +73,28 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 			
-			export default $Component$;
+			export default -component-;
 			`;
-
 			
-			var component_css : string = `".$Component$ {\r\n",
+			var component_css : string = `".-component- {\r\n",
             "}"`;
 			
-			if(componentName){
-				component_tsx.replace("$Component$",componentName);
-				component_css.replace("$Component$",componentName);
+			//Replace ComponentName
+			component_tsx = replaceAll(component_tsx,"-component-",componentName);//replace -component- with given componentName
+			component_css = replaceAll(component_css,"-component-",componentName);//replace -component- with given componentName
 			
-				
-				fs.writeFileSync(rootPath + '/' + componentName + '/' + componentName + '.tsx', component_tsx);
-				fs.writeFileSync(rootPath + '/' + componentName + '/' + componentName + '.css', component_css);
-				vscode.window.showInformationMessage(componentName + ' ts component created successfully.');
-			}
-			else vscode.window.showInformationMessage(componentName + ' ts component was not created successfully. Please check the Name you gave!');
+			//Create Component Files Inside our folder
+			fs.writeFileSync(rootPath + '/' + componentName + '/' + 'index.tsx', component_tsx);
+			fs.writeFileSync(rootPath + '/' + componentName + '/' + 'index.css', component_css);
+
+			//Success! Show our Success message.
+			vscode.window.showInformationMessage("[ " +componentName + " ]"+' ts component created successfully.');
 		});
 	});
-
 	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	vscode.window.showInformationMessage("[TS React Component Generator]:"+' Thank you for using this component. Cya later aligator!');
+}

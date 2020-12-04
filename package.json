@@ -6,6 +6,8 @@
 	"engines": {
 		"vscode": "^1.51.0"
 	},
+	"publisher" : "kkoukakis",
+	"repository": "https://github.com/kkoukakis/https://github.com/kkoukakis/ts-react-component-generator-vs-code",
 	"categories": [
 		"Other"
 	],
@@ -19,14 +21,15 @@
 				{
 					"when": "explorerResourceIsFolder",
 					"command": "ts-react-component-generator.generate-ts-component",
-					"group": "navigation@1"
+					"group": "1_modification@1"
 				}
 			]
 		},
 		"commands": [
 			{
 				"command": "ts-react-component-generator.generate-ts-component",
-				"title": "Generate TS Component"
+				"title": "Generate TS Component",
+				"args" : "component"
 			}
 		]
 	},
