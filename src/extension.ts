@@ -12,10 +12,19 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			var componentName : string = "";
+
+
+
 			if(componentName1){
+				//Trim Whitespaces
 				componentName = replaceAll(componentName1," ",'');}
 			else{ 
 				vscode.window.showInformationMessage("[ " +componentName + " ]"+' is a wrong Component Name');
+				return;
+			}
+
+			if(/^[a-zA-Z_$][*a-zA-Z0-9_$]/.test(componentName) == false){
+				vscode.window.showInformationMessage("[ " +componentName + " ]"+' is a wrong Component Name! Component starts with [a-zA-Z_$]');
 				return;
 			}
 
@@ -28,56 +37,48 @@ export function activate(context: vscode.ExtensionContext) {
 				fs.mkdirSync(rootPath + '/' + componentName);
 			}
 			
-			var component_tsx : string =  `import React, { Component } from 'react'; 
-			import './-component-.css;
+			var component_tsx : string =  
+`import React, { Component } from 'react'; 
+import './-component-.css';
 
-			export interface I-component-Props {
-				//Here we pass the Props Interface
-				 
-			}
+export interface I-component-Props {
+	//Here we pass the Props Interface
+}
+
+export interface I-component-State {
+	//here we pass the State Interface
+}
+
+//class ComponentName Component<PropsInterface, StateInterface>
+class -component- extends Component<I-component-Props, I-component-State> {
+	
+	//Component State
+	state = {
+	}
+
+	//Add style here
+	style = {
+	};
+
+	// Before the component mounts, we initialise our state
+	componentWillMount() {
+	 }
+
+	// After the component did mount, we set the state.
+	componentDidMount() {
+	}
+
+	render() {
+		return (
+			<div className="-component-" style={this.style}>
+			</div>
+		);
+	}
+}
+
+export default -component-;`;
 			
-			export interface I-component-State {
-				//here we pass the State Interface
-			 
-			}
-			
-			//class ComponentName Component<PropsInterface, StateInterface>
-			class -component- extends Component<I-component-Props, I-component-State> {
-				
-				//Component State
-				state = {
-					 
-				}
-			
-				//Add style here
-				style = {
-			 
-				  };
-			
-				// Before the component mounts, we initialise our state
-				componentWillMount() {
-				   
-				 }
-			
-				// After the component did mount, we set the state.
-				componentDidMount() {
-			
-				}
-			
-				render() {
-					return (
-						<div style={this.style}>
-						 
-						</div>
-					);
-				}
-			}
-			
-			export default -component-;
-			`;
-			
-			var component_css : string = `".-component- {\r\n",
-            "}"`;
+			var component_css : string = `.-component- {\r\n\r\n}`;
 			
 			//Replace ComponentName
 			component_tsx = replaceAll(component_tsx,"-component-",componentName);//replace -component- with given componentName
