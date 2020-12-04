@@ -2,7 +2,7 @@
 	"name": "ts-react-component-generator",
 	"displayName": "ts-react-component-generator",
 	"description": "Generate TypeScript React Components ",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"engines": {
 		"vscode": "^1.51.0"
 	},
@@ -11,7 +11,6 @@
 	"categories": [
 		"Other","Snippets", "Programming Languages"
 	],
-	"tags": ["typescript" , "react", "reactjs", "components", "generator", "snippets" ],
 	"activationEvents": [
 		"onCommand:ts-react-component-generator.generate-ts-component"
 	],

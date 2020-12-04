@@ -3,8 +3,16 @@ import * as fs from 'fs';
 
 export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('ts-react-component-generator.generate-ts-component', (e : any) => {
-		var error : boolean = false;
+		
+		if(!e){
+			vscode.window.showInformationMessage("Just right click on Explorer and Create TS Component!");
+			return;
+		}
+
+
 		let rootPath = e.fsPath;
+		
+		
 		vscode.window.showInputBox().then(function(componentName1) {
 
 			function replaceAll(string : string, search : string, replace :string) : string {
@@ -13,16 +21,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 			var componentName : string = "";
 
-
-
 			if(componentName1){
 				//Trim Whitespaces
 				componentName = replaceAll(componentName1," ",'');}
-			else{ 
+			else{
+				//Some Error Occured 
 				vscode.window.showInformationMessage("[ " +componentName + " ]"+' is a wrong Component Name');
 				return;
 			}
 
+			//Check Regex for accepted ComponentName
 			if(/^[a-zA-Z_$][*a-zA-Z0-9_$]/.test(componentName) == false){
 				vscode.window.showInformationMessage("[ " +componentName + " ]"+' is a wrong Component Name! Component starts with [a-zA-Z_$]');
 				return;
@@ -37,9 +45,8 @@ export function activate(context: vscode.ExtensionContext) {
 				fs.mkdirSync(rootPath + '/' + componentName);
 			}
 			
-			var component_tsx : string =  
-`import React, { Component } from 'react'; 
-import './-component-.css';
+			var component_tsx : string = `import React, { Component } from 'react'; 
+import './index.css';
 
 export interface I-component-Props {
 	//Here we pass the Props Interface

@@ -34,7 +34,18 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 Users appreciate release notes as you update your extension.
 
+
+### Coming soon
+- Add custom template index.tsx and index.css creation 
+
+### 1.0.2
+- corrected index.css import in index.tsx files
+
 ### 1.0.1
+- added Regex for correct ComponentName
+
+
+
 
 
 -----------------------------------------------------------------------------------------------------------
