@@ -2,7 +2,12 @@
 
 A simple TypeScript React Component Generator VS Code Extenstion.
 
+Download here:
+[https://marketplace.visualstudio.com/items?itemName=kkoukakis.ts-react-component-generator]
+
 ## Features
+
+Right click on explorer and type your Component name.
 
 Creates a Folder with 2 files:
 - index.tsx  :  TypeScript Component

@@ -7,10 +7,11 @@
 		"vscode": "^1.51.0"
 	},
 	"publisher" : "kkoukakis",
-	"repository": "https://github.com/kkoukakis/https://github.com/kkoukakis/ts-react-component-generator-vs-code",
+	"repository": "https://github.com/kkoukakis/ts-react-component-generator-vs-code",
 	"categories": [
-		"Other"
+		"Other","Snippets", "Programming Languages"
 	],
+	"tags": ["typescript" , "react", "reactjs", "components", "generator", "snippets" ],
 	"activationEvents": [
 		"onCommand:ts-react-component-generator.generate-ts-component"
 	],
