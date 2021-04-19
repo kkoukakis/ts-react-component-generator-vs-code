@@ -2,7 +2,7 @@
 	"name": "ts-react-component-generator",
 	"displayName": "ts-react-component-generator",
 	"description": "Generate TypeScript React Components ",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"engines": {
 		"vscode": "^1.51.0"
 	},

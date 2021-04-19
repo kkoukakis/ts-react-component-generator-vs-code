@@ -59,9 +59,14 @@ export interface I-component-State {
 //class ComponentName Component<PropsInterface, StateInterface>
 class -component- extends Component<I-component-Props, I-component-State> {
 	
-	//Component State
-	state = {
+	constructor(props:I-component-Props){
+		super(props)
+
+		this.state = {
+
+		}
 	}
+
 
 	//Add style here
 	style = {

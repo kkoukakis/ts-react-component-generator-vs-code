@@ -38,6 +38,9 @@ Users appreciate release notes as you update your extension.
 ### Coming soon
 - Add custom template index.tsx and index.css creation 
 
+### 1.0.3
+- added Constructor and included states inside it.
+
 ### 1.0.2
 - corrected index.css import in index.tsx files
 
@@ -50,6 +53,6 @@ Users appreciate release notes as you update your extension.
 
 -----------------------------------------------------------------------------------------------------------
  
- Lisence MIT ~ kkoukakis 2020
+ Lisence MIT ~ kkoukakis 2021
 
  
